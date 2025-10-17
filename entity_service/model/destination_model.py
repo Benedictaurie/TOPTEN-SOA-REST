@@ -1,6 +1,7 @@
 # model/destination_model.py
 class DestinationModel:
-    def __init__(self, id=None, name=None, description=None, location=None, image_url=None, created_at=None, updated_at=None):
+    def __init__(self, id=None, name=None, description=None, location=None, 
+                 image_url=None, created_at=None, updated_at=None, deleted_at=None):
         self.id = id
         self.name = name
         self.description = description
@@ -8,6 +9,7 @@ class DestinationModel:
         self.image_url = image_url
         self.created_at = created_at
         self.updated_at = updated_at
+        self.deleted_at = deleted_at
 
     def to_dict(self):
         return {

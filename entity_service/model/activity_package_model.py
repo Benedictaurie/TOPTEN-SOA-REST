@@ -1,28 +1,26 @@
 # model/activity_package_model.py
-
 class ActivityPackageModel:
-    def __init__(self, id=None, name=None, description=None, location=None, price_per_person=None, duration_hours=None, requirements=None, image_url=None, created_at=None, updated_at=None):
+    def __init__(self, id=None, destinations_id=None, name=None, description=None, price=None, image_url=None, is_available=True, created_at=None, updated_at=None, deleted_at=None):
         self.id = id
+        self.destinations_id = destinations_id # foreign key dari tabel destinasions
         self.name = name
         self.description = description
-        self.location = location
-        self.price_per_person = price_per_person
-        self.duration_hours = duration_hours
-        self.requirements = requirements  # Bisa berupa string, misal: "Minimal usia 10 tahun, bisa berenang"
+        self.price = float(price) if price else 0.0
         self.image_url = image_url
+        self.is_available = bool(is_available)
         self.created_at = created_at
         self.updated_at = updated_at
+        self.deleted_at = deleted_at
 
     def to_dict(self):
         return {
             "id": self.id,
+            "destinations_id": self.destinations_id,
             "name": self.name,
             "description": self.description,
-            "location": self.location,
-            "price_per_person": self.price_per_person,
-            "duration_hours": self.duration_hours,
-            "requirements": self.requirements,
+            "price": self.price,
             "image_url": self.image_url,
+            "is_available": self.is_available,
             "created_at": self.created_at.isoformat() if self.created_at else None,
             "updated_at": self.updated_at.isoformat() if self.updated_at else None
         }

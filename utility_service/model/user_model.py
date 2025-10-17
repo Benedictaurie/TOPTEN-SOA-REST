@@ -1,17 +1,18 @@
 # model/user_model.py
 class UserModel:
-    def __init__(self, id=None, name=None, email=None, phone_number=None, password_hash=None, full_name=None, role='customer', created_at=None, updated_at=None):
+    def __init__(self, id=None, name=None, email=None, password=None, phone_number=None, role='customer', created_at=None, updated_at=None, deleted_at=None):
         self.id = id
         self.name = name
         self.email = email
+        self.password = password # Di service, ini akan di-hash
         self.phone_number = phone_number
-        self.password_hash = password_hash
         self.role = role
         self.created_at = created_at
         self.updated_at = updated_at
+        self.deleted_at = deleted_at
 
     def to_dict(self):
-        # Jangan sertakan password_hash dalam respons JSON!
+        # JANGAN sertakan password dalam respons JSON
         return {
             "id": self.id,
             "name": self.name,
@@ -23,4 +24,4 @@ class UserModel:
         }
 
     def __repr__(self):
-        return f"<User {self.id}: {self.username}>"
+        return f"<User {self.id}: {self.name}>"
