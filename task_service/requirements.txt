@@ -1,0 +1,6 @@
+# requirements.txt
+Flask
+Flasgger
+requests
+mysql-connector-python
+python-dotenv #untuk memuat variabel lingkungan (seperti port, password database, URL layanan lain) dari file .env
