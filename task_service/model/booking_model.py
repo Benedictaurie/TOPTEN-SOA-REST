@@ -1,6 +1,10 @@
-# model/booking_model.py
 class BookingModel:
-    def __init__(self, id=None, booking_code=None, user_id=None, booking_type=None, tour_packages_id=None, activity_packages_id=None, rental_packages_id=None, start_date=None, end_date=None, num_persons=1, status='pending', total_price=None, created_at=None, updated_at=None):
+    def __init__(self, id=None, booking_code=None, user_id=None, 
+                 booking_type=None, tour_packages_id=None, 
+                 activity_packages_id=None, rental_packages_id=None, 
+                 start_date=None, end_date=None, num_persons=1, 
+                 status='pending', total_price=None, created_at=None, 
+                 updated_at=None):
         self.id = id
         self.booking_code = booking_code
         self.user_id = user_id

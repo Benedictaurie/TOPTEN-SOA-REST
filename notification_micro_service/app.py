@@ -1,24 +1,32 @@
-from flask import Flask, request, jsonify
-from service.email_service import EmailService
+from flask import Flask
+from flasgger import Swagger
+from controller.notification_controller import notification_bp
 
 app = Flask(__name__)
-email_service = EmailService()
 
-@app.route('/api/notify', methods=['POST'])
-def send_notification():
-    data = request.get_json()
-    user_id = data.get('user_id')
-    message = data.get('message')
-    
-    # Di sini bisa juga memanggil Utility Service untuk dapat email user
-    # response = requests.get(f"http://localhost:8002/api/users/{user_id}")
-    # user_email = response.json()['email']
-    
-    # email_service.send_email(user_email, "Booking Update", message)
-    
-    print(f"Notification for user {user_id}: '{message}'") # Simulasi pengiriman
-    return jsonify({"message": "Notification sent"}), 200
+# Konfigurasi Flasgger (Swagger)
+swagger_config = {
+    "headers": [],
+    "specs": [
+        {
+            "endpoint": 'apispec_1',
+            "route": '/apispec_1.json',
+            "rule_filter": lambda rule: True,
+            "model_filter": lambda tag: True,
+        }
+    ],
+    "static_url_path": "/flasgger_static",
+    "swagger_ui": True,
+    "specs_route": "/docs/"
+}
+Swagger(app, config=swagger_config)
+
+# Daftarkan Blueprint dari controller
+app.register_blueprint(notification_bp, url_prefix='/api/notify')
+
+@app.route('/')
+def home():
+    return "<h1>Welcome to TOPTENBALITOUR Notification Microservice</h1><p>Go to /docs/ for API documentation.</p>"
 
 if __name__ == '__main__':
-    print("Notification Service running on port 8004")
     app.run(port=8004, debug=True)

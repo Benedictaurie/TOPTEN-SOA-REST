@@ -23,6 +23,7 @@ Aplikasi ini dipecah menjadi beberapa layanan yang berjalan pada port berbeda un
 # Setup Database
 **Import Database**
 - Import file database yang sudah tersedia di direktori file `db_stuff/topten_bali_tour.sql`
+
 **Import Postman Collection**
 - Import file API collection yang sudah tersedia di direktori file `documentation/toptenbalitour_api_collection.json` ke Postman
 
@@ -60,7 +61,7 @@ DB_NAME=topten_bali_tour
 ... dan seterusnya.
 
 # Cara menjalankan Aplikasi
-- Membuka 4 terminal yang berbeda**
+- Membuka 4 terminal yang berbeda
 - Di setiap terminal, navigasi ke folder layanan yang berbeda
 
 **Terminal 1 - entity_service**

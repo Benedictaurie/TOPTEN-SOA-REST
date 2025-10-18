@@ -1,6 +1,8 @@
 # model/user_model.py
 class UserModel:
-    def __init__(self, id=None, name=None, email=None, password=None, phone_number=None, role='customer', created_at=None, updated_at=None, deleted_at=None):
+    def __init__(self, id=None, name=None, email=None, password=None, 
+                 phone_number=None, role='customer', created_at=None, 
+                 updated_at=None, deleted_at=None):
         self.id = id
         self.name = name
         self.email = email

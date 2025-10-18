@@ -1,6 +1,7 @@
-# model/activity_package_model.py
 class ActivityPackageModel:
-    def __init__(self, id=None, destinations_id=None, name=None, description=None, price=None, image_url=None, is_available=True, created_at=None, updated_at=None, deleted_at=None):
+    def __init__(self, id=None, destinations_id=None, name=None, description=None, 
+                 price=None, image_url=None, is_available=True, 
+                 created_at=None, updated_at=None, deleted_at=None):
         self.id = id
         self.destinations_id = destinations_id # foreign key dari tabel destinasions
         self.name = name
