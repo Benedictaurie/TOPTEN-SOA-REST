@@ -1,0 +1,303 @@
+{
+    "info": {
+        "_postman_id": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+        "name": "TOPTENBALITOUR REST API Collection",
+        "description": "Koleksi API untuk aplikasi TOPTEN BALI TOUR berbasis SOA REST",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Entity Service (Port 8003)",
+            "item": [
+                {
+                    "name": "Destinations",
+                    "item": [
+                        {
+                            "name": "Get All Destinations",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://localhost:8003/api/destinations",
+                                    "protocol": "http",
+                                    "host": [ "localhost" ],
+                                    "port": "8003",
+                                    "path": [ "api", "destinations" ]
+                                },
+                                "description": "Mengambil daftar semua destinasi wisata yang tersedia."
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get Destination by ID",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://localhost:8003/api/destinations/1",
+                                    "protocol": "http",
+                                    "host": [ "localhost" ],
+                                    "port": "8003",
+                                    "path": [ "api", "destinations", "1" ]
+                                },
+                                "description": "Mengambil detail satu destinasi berdasarkan ID. Contoh: ID 1 untuk 'Kuta Beach'."
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Create New Destination (Admin)",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    { "key": "Content-Type", "value": "application/json" }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"name\": \"Seminyak Beach\",\n    \"description\": \"Pantai berpasir putih yang tenang dengan pemandangan matahari terbenam yang indah dan banyak restoran mewah di sekitarnya.\",\n    \"location\": \"Seminyak, Kuta District, Badung Regency, Bali\",\n    \"image_url\": \"assets/seminyak-beach.jpg\"\n}"
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8003/api/destinations",
+                                    "protocol": "http",
+                                    "host": [ "localhost" ],
+                                    "port": "8003",
+                                    "path": [ "api", "destinations" ]
+                                },
+                                "description": "Menambahkan destinasi baru. Memerlukan otorisasi admin."
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Tour Packages",
+                    "item": [
+                        {
+                            "name": "Get All Tour Packages",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://localhost:8003/api/tour-packages",
+                                    "protocol": "http",
+                                    "host": [ "localhost" ],
+                                    "port": "8003",
+                                    "path": [ "api", "tour-packages" ]
+                                },
+                                "description": "Mengambil daftar semua paket tour yang tersedia."
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Create New Tour Package (Admin)",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    { "key": "Content-Type", "value": "application/json" }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"destination_id\": 2,\n    \"name\": \"Ubud Art & Nature Explorer\",\n    \"description\": \"Jelajahi pusat seni dan keindahan alam Ubud, mengunjungi museum, terasering sawah, dan pura-pura suci.\",\n    \"price\": 2500000,\n    \"duration_days\": 2,\n    \"image_url\": \"assets/ubud-explorer.jpg\"\n}"
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8003/api/tour-packages",
+                                    "protocol": "http",
+                                    "host": [ "localhost" ],
+                                    "port": "8003",
+                                    "path": [ "api", "tour-packages" ]
+                                },
+                                "description": "Menambahkan paket tour baru. destination_id merujuk ke ID yang ada di tabel destinations. Contoh: ID 2 untuk 'Ubud'."
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Activity Packages",
+                    "item": [
+                        {
+                            "name": "Get All Activity Packages",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://localhost:8003/api/activity-packages",
+                                    "protocol": "http",
+                                    "host": [ "localhost" ],
+                                    "port": "8003",
+                                    "path": [ "api", "activity-packages" ]
+                                },
+                                "description": "Mengambil daftar semua paket aktivitas yang tersedia."
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Create New Activity Package (Admin)",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    { "key": "Content-Type", "value": "application/json" }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"destinations_id\": 7,\n    \"name\": \"Nusa Penida Diving Trip\",\n    \"description\": \"Pengalaman menyelam untuk menikmati keindahan bawah laut Nusa Penida, termasuk Manta Point.\",\n    \"price\": 850000,\n    \"image_url\": \"assets/penida-diving.jpg\"\n}"
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8003/api/activity-packages",
+                                    "protocol": "http",
+                                    "host": [ "localhost" ],
+                                    "port": "8003",
+                                    "path": [ "api", "activity-packages" ]
+                                },
+                                "description": "Menambahkan paket aktivitas baru. destinations_id merujuk ke ID yang ada di tabel destinations. Contoh: ID 7 untuk 'Nusa Penida'."
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Rental Packages",
+                    "item": [
+                        {
+                            "name": "Get All Rental Packages",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://localhost:8003/api/rental-packages",
+                                    "protocol": "http",
+                                    "host": [ "localhost" ],
+                                    "port": "8003",
+                                    "path": [ "api", "rental-packages" ]
+                                },
+                                "description": "Mengambil daftar semua paket rental yang tersedia."
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Create New Rental Package (Admin)",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    { "key": "Content-Type", "value": "application/json" }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"type\": \"Motorcycle\",\n    \"brand\": \"Honda\",\n    \"model\": \"Vario 160\",\n    \"plate_number\": \"DK 1234 XYZ\",\n    \"description\": \"Sepeda motor Honda Vario 160, kondisi baru, nyaman untuk perjalanan di Bali.\",\n    \"price_per_day\": 150000,\n    \"image_url\": \"assets/honda-vario.jpg\"\n}"
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8003/api/rental-packages",
+                                    "protocol": "http",
+                                    "host": [ "localhost" ],
+                                    "port": "8003",
+                                    "path": [ "api", "rental-packages" ]
+                                },
+                                "description": "Menambahkan paket rental kendaraan baru."
+                            },
+                            "response": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Utility Service (Port 8002)",
+            "item": [
+                {
+                    "name": "Register User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            { "key": "Content-Type", "value": "application/json" }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Benedict Aurie\",\n    \"email\": \"ben@example.com\",\n    \"password\": \"password123\",\n    \"phone_number\": \"08123456789\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8002/api/users/register",
+                            "protocol": "http",
+                            "host": [ "localhost" ],
+                            "port": "8002",
+                            "path": [ "api", "users", "register" ]
+                        },
+                        "description": "Mendaftarkan pengguna baru."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Login User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            { "key": "Content-Type", "value": "application/json" }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"ben@example.com\",\n    \"password\": \"password123\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8002/api/users/login",
+                            "protocol": "http",
+                            "host": [ "localhost" ],
+                            "port": "8002",
+                            "path": [ "api", "users", "login" ]
+                        },
+                        "description": "Melakukan login untuk mendapatkan token autentikasi."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Task Service (Port 8001)",
+            "item": [
+                {
+                    "name": "Create Booking",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            { "key": "Content-Type", "value": "application/json" },
+                            { "key": "Authorization", "value": "Bearer <USER_TOKEN>", "description": "Ganti <USER_TOKEN> dengan token yang didapat dari endpoint login" }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"booking_type\": \"tour\",\n    \"tour_packages_id\": 1,\n    \"start_date\": \"2025-12-25T10:00:00Z\",\n    \"end_date\": \"2025-12-27T18:00:00Z\",\n    \"num_persons\": 2\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8001/api/bookings",
+                            "protocol": "http",
+                            "host": [ "localhost" ],
+                            "port": "8001",
+                            "path": [ "api", "bookings" ]
+                        },
+                        "description": "Membuat booking baru. booking_type bisa 'tour', 'activity', atau 'rental'. Sesuaikan ID package (tour_packages_id, activity_packages_id, rental_packages_id) dengan yang ada."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Booking (Activity)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            { "key": "Content-Type", "value": "application/json" },
+                            { "key": "Authorization", "value": "Bearer <USER_TOKEN>" }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"booking_type\": \"activity\",\n    \"activity_packages_id\": 1,\n    \"start_date\": \"2025-12-20T08:00:00Z\",\n    \"end_date\": \"2025-12-20T12:00:00Z\",\n    \"num_persons\": 1\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8001/api/bookings",
+                            "protocol": "http",
+                            "host": [ "localhost" ],
+                            "port": "8001",
+                            "path": [ "api", "bookings" ]
+                        },
+                        "description": "Contoh membuat booking untuk paket aktivitas."
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}
