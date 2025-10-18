@@ -1,4 +1,3 @@
-# service/destination_service.py
 import mysql.connector
 from config import DB_HOST, DB_USER, DB_PASSWORD, DB_NAME
 from model.destination_model import DestinationModel

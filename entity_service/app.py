@@ -19,4 +19,5 @@ app.register_blueprint(destination_bp, url_prefix='/api/destinations')
 # app.register_blueprint(tour_bp, url_prefix='/api/tour-packages')
 
 if __name__ == '__main__':
+    print("Entity Service running on port 8003")
     app.run(port=8003, debug=True)
