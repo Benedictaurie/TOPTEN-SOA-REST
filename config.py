@@ -1,6 +1,8 @@
+# config.py berfungsi untuk konfigurasi global/bersama
 import os
 from dotenv import load_dotenv
 
+#mencari file .env di root proyek
 load_dotenv()
 
 # Konfigurasi Database
@@ -8,6 +10,9 @@ DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
 DB_USER = os.getenv("DB_USER", "root05")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "iridiumsilver")
 DB_NAME = os.getenv("DB_NAME", "topten_bali_tour")
+
+#Konfigurasi keamanan
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # Konfigurasi Layanan Lain
 UTILITY_SERVICE_URL = os.getenv("UTILITY_SERVICE_URL", "http://localhost:8002")

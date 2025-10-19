@@ -1,6 +1,8 @@
+import os
 from flask import Flask
 from flasgger import Swagger
 from controller.notification_controller import notification_bp
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
@@ -29,4 +31,5 @@ def home():
     return "<h1>Welcome to TOPTENBALITOUR Notification Microservice</h1><p>Go to /docs/ for API documentation.</p>"
 
 if __name__ == '__main__':
-    app.run(port=8004, debug=True)
+    port = int(os.environ.get('FLASK_RUN_PORT', 8004))
+    app.run(port=port, debug=True)

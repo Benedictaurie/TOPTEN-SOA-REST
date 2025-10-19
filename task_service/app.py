@@ -1,7 +1,13 @@
+import sys
 import os
+# menambahkan path root proyek ke sys.path agar bisa import modil config.py
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from config import DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, SECRET_KEY, UTILITY_SERVICE_URL #import dr config global
 from flask import Flask
 from flasgger import Swagger
 from controller.booking_controller import booking_bp
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
@@ -30,4 +36,6 @@ def home():
     return "<h1>Welcome to TOPTENBALITOUR Task Service</h1><p>Go to /docs/ for API documentation.</p>"
 
 if __name__ == '__main__':
-    app.run(port=8001, debug=True)
+    #baca port dari .env lokal 
+    port = int(os.environ.get('FLASK_RUN_PORT', 8001))
+    app.run(port=port, debug=True)

@@ -94,7 +94,9 @@ class BookingService:
         booking_code = f"TOPTEN-{uuid.uuid4().hex[:8].upper()}"
         
         query = """
-            INSERT INTO bookings (booking_code, user_id, booking_type, tour_packages_id, activity_packages_id, rental_packages_id, start_date, end_date, num_persons, total_price, status)
+            INSERT INTO bookings (booking_code, user_id, 
+            booking_type, tour_packages_id, activity_packages_id, 
+            rental_packages_id, start_date, end_date, num_persons, total_price, status)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         values = (

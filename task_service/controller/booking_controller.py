@@ -1,4 +1,6 @@
+import os
 from flask import Blueprint, request, jsonify
+from functools import wraps 
 from service.booking_service import BookingService
 
 booking_bp = Blueprint('bookings', __name__)
@@ -9,15 +11,22 @@ def token_required(f):
     from functools import wraps
     @wraps(f)
     def decorated(*args, **kwargs):
-        token = request.headers.get('Authorization')
+        token = None
+        auth_header = request.headers.get('Authorization')
+        if auth_header:
+            try:
+                token = auth_header.split(" ")[1] # bearer token
+            except IndexError:
+                return jsonify({"message": "Token is malformed!"}), 401
         if not token:
             return jsonify({"message": "Token is missing!"}), 401
         try:
-            # Hapus "Bearer " dari token
-            token = token.split(" ")[1]
-            # Verifikasi token (bisa dipindahkan ke service jika perlu)
-            jwt.decode(token, os.getenv("SECRET_KEY"), algorithms=["HS256"])
-        except:
+            # Memastikan SECRET_KEY diambil dari config
+            from config import SECRET_KEY
+            jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        except jwt.ExpiredSignatureError:
+            return jsonify({"message": "Token is expired!"}), 401
+        except jwt.InvalidTokenError:
             return jsonify({"message": "Token is invalid!"}), 401
         return f(*args, **kwargs)
     return decorated
