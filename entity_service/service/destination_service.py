@@ -1,5 +1,5 @@
 import mysql.connector
-from config import DB_HOST, DB_USER, DB_PASSWORD, DB_NAME
+from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
 from model.destination_model import DestinationModel
 
 class DestinationService:
@@ -8,6 +8,7 @@ class DestinationService:
             self.connection = mysql.connector.connect(
                 host=DB_HOST,
                 user=DB_USER,
+                port=DB_PORT,
                 password=DB_PASSWORD,
                 database=DB_NAME
             )

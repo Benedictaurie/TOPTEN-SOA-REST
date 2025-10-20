@@ -11,8 +11,8 @@ try:
     DB_PORT = int(os.getenv("DB_PORT", 3306))
 except (TypeError, ValueError):
     DB_PORT = 3306
-DB_USER = os.getenv("DB_USER", "root05")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "iridiumsilver")
+DB_USER = os.getenv("DB_USER", "root")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 DB_NAME = os.getenv("DB_NAME", "topten_bali_tour")
 
 #Konfigurasi keamanan
