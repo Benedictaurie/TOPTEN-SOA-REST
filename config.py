@@ -7,12 +7,16 @@ load_dotenv()
 
 # Konfigurasi Database
 DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
+try:
+    DB_PORT = int(os.getenv("DB_PORT", 3306))
+except (TypeError, ValueError):
+    DB_PORT = 3306
 DB_USER = os.getenv("DB_USER", "root05")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "iridiumsilver")
 DB_NAME = os.getenv("DB_NAME", "topten_bali_tour")
 
 #Konfigurasi keamanan
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY", "a_very_secret_key_that_should_be_changed")
 
 # Konfigurasi Layanan Lain
 UTILITY_SERVICE_URL = os.getenv("UTILITY_SERVICE_URL", "http://localhost:8002")
