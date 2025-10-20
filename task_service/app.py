@@ -9,6 +9,8 @@ from flasgger import Swagger
 from controller.booking_controller import booking_bp
 from dotenv import load_dotenv
 
+load_dotenv() # memuat variabel lingkungan dari file .env
+
 app = Flask(__name__)
 
 # Konfigurasi Flasgger (Swagger)

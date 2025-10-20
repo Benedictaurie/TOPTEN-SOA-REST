@@ -1,8 +1,15 @@
+import sys
 import os
+# menambahkan path root proyek ke sys.path agar bisa import modil config.py
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from config import DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, SECRET_KEY, UTILITY_SERVICE_URL #import dr config global
 from flask import Flask
 from flasgger import Swagger
 from controller.notification_controller import notification_bp
 from dotenv import load_dotenv
+
+load_dotenv() # memuat variabel lingkungan dari file .env
 
 app = Flask(__name__)
 
