@@ -1,5 +1,6 @@
 import os
-from flask import Blueprint, request, jsonify
+import jwt
+from flask import Blueprint, request, jsonify, g
 from functools import wraps 
 from service.booking_service import BookingService
 
@@ -8,7 +9,6 @@ booking_service = BookingService()
 
 # Middleware untuk memeriksa token
 def token_required(f):
-    from functools import wraps
     @wraps(f)
     def decorated(*args, **kwargs):
         token = None
@@ -23,7 +23,12 @@ def token_required(f):
         try:
             # Memastikan SECRET_KEY diambil dari config
             from config import SECRET_KEY
-            jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+            decoded_token = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+
+            # simpan user info di g (app context)
+            g.user_id = decoded_token.get('user_id')
+            g.user_role = decoded_token.get('role')
+
         except jwt.ExpiredSignatureError:
             return jsonify({"message": "Token is expired!"}), 401
         except jwt.InvalidTokenError:
@@ -73,7 +78,13 @@ def create_booking():
         description: Booking created successfully
     """
     data = request.get_json()
-    token = request.headers.get('Authorization').split(" ")[1]
+    auth_header = request.headers.get('Authorization')
+    token = auth_header.split(" ")[1]
+
+    #Decode token untuk mendaptkan user info
+    from config import SECRET_KEY
+    decoded_token = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+    user_id = g.user_id
     
     new_booking, message = booking_service.create_booking(token, data)
     

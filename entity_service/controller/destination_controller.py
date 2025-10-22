@@ -1,3 +1,4 @@
+#controller/destination.controller.py
 from flask import Blueprint, request, jsonify
 from service.destination_service import DestinationService
 

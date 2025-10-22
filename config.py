@@ -6,17 +6,28 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Konfigurasi Database
+# DB_CONFIG = {
+#     'host': os.getenv("DB_HOST", "127.0.0.1"),
+#     'port': int(os.getenv('DB_PORT', 3306)),
+#     'user': os.getenv("DB_USER", "root05"),
+#     'password': os.getenv("DB_PASSWORD", "iridiumsilver"),
+#     'charset': 'utf8mb4',
+# }
+
+#Konfigurasi Database
 DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
-try:
-    DB_PORT = int(os.getenv("DB_PORT", 3306))
-except (TypeError, ValueError):
-    DB_PORT = 3306
-DB_USER = os.getenv("DB_USER", "root")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "")
+DB_PORT = 3306
+DB_USER = os.getenv("DB_USER", "root05")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "iridiumsilver")
 DB_NAME = os.getenv("DB_NAME", "topten_bali_tour")
 
 #Konfigurasi keamanan
-SECRET_KEY = os.getenv("SECRET_KEY", "a_very_secret_key_that_should_be_changed")
+SECRET_KEY = os.getenv("SECRET_KEY" "a_very_secret_key_that_should_be_changed")
+
+#Konfigurasi keamanan 2 -> ini membuat entity service lgsg error
+# SECRET_KEY = os.getenv("SECRET_KEY") 
+# if not SECRET_KEY:
+#     raise ValueError("SECRET_KEY environment variable is required!") 
 
 # Konfigurasi Layanan Lain
 UTILITY_SERVICE_URL = os.getenv("UTILITY_SERVICE_URL", "http://localhost:8002")
